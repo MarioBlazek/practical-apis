@@ -1,0 +1,9 @@
+<ul>
+    {% for article in articles %}
+    <li>
+        <h3>{{ ez_content_name(article) }}</h3>
+        <p>{{ ez_render_field(article, 'intro') }}</p>
+        <p><a href="{{ path( "ez_urlalias", { 'locationId': article.contentInfo.mainLocationId } ) }}">Read more...</a></p>
+    </li>
+    {% endfor %}
+</ul>
