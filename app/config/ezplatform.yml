@@ -36,3 +36,12 @@ ezpublish:
                         template: "full/root_folder.html.twig"
                         match:
                             Id\Location: 2
+                    articles:
+                        template: "full/article.html.twig"
+                        match:
+                            Identifier\ContentType: "article"
+                embed:
+                    twitter:
+                        template: "embed/twitter.html.twig"
+                        match:
+                            Identifier\ContentType: "twitter"

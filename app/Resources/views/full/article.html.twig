@@ -1,0 +1,9 @@
+{% extends "pagelayout.html.twig" %}
+
+{% block content %}
+    <h1>{{ ez_render_field(content, 'title') }}</h1>
+    <h3>{{ ez_render_field(content, 'short_title') }}</h3>
+    <p>{{ ez_render_field(content, 'intro') }}</p>
+    <p>{{ ez_render_field(content, 'body') }}</p>
+{% endblock %}
+
