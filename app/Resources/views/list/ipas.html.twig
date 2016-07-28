@@ -1,0 +1,10 @@
+<ul>
+    {% for ipa in ipas %}
+    <li class="list list-unstyled">
+        <h3>{{ ez_content_name(ipa) }}</h3>
+        <p>{{ ez_render_field(ipa, 'image', { parameters: { 'alias': 'small' }} ) }}</p>
+        <p>{{ ez_field_value(ipa, 'stars') }} Stars out of 5</p>
+        <p><a href="{{ path( "ez_urlalias", { 'locationId': ipa.contentInfo.mainLocationId } ) }}">Read more...</a></p>
+    </li>
+    {% endfor %}
+</ul>

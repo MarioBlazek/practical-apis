@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Controller;
 
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
@@ -6,7 +7,7 @@ use eZ\Publish\Core\MVC\Symfony\Controller\Controller;
 use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 
-class ArticleController extends Controller
+class IpaController extends Controller
 {
     public function allAction()
     {
@@ -14,19 +15,19 @@ class ArticleController extends Controller
         $query = new Query();
         $query->query = new Criterion\LogicalAnd([
             new Criterion\ParentLocationId(2),
-            new Criterion\ContentTypeIdentifier('article'),
+            new Criterion\ContentTypeIdentifier('ipa'),
             new Criterion\Visibility(Criterion\Visibility::VISIBLE)
         ]);
 
         $searchService = $this->getRepository()->getSearchService();
-        $articles = $searchService->findContent($query)->searchHits;
+        $ipas = $searchService->findContent($query)->searchHits;
 
         // we're only interested in the content objects
-        $articles = array_map(function(SearchHit $searchHit) {
+        $ipas = array_map(function(SearchHit $searchHit) {
             return $searchHit->valueObject;
-        }, $articles);
+        }, $ipas);
 
 
-        return $this->render('list/articles.html.twig', ['articles' => $articles]);
+        return $this->render('list/ipas.html.twig', ['ipas' => $ipas]);
     }
 }
