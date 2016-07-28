@@ -4,6 +4,7 @@
     <h1>{{ ez_render_field(content, 'name') }}</h1>
     <p>{{ ez_render_field(content, 'image', { parameters: { 'alias': 'medium' }} ) }}</p>
     <p>{{ ez_field_value(content, 'stars') }} stars out of 5.</p>
+    <p>Brewery: <a href="{{ path( "ez_urlalias", { 'locationId': brewery.contentInfo.mainLocationId } ) }}">{{ ez_field_value(brewery, 'name') }}</a></p>
     <p>{{ ez_render_field(content, 'description') }}</p>
 {% endblock %}
 

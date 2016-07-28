@@ -6,6 +6,7 @@ use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 use eZ\Publish\Core\MVC\Symfony\Controller\Controller;
 use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 
 class IpaController extends Controller
 {
@@ -29,5 +30,18 @@ class IpaController extends Controller
 
 
         return $this->render('list/ipas.html.twig', ['ipas' => $ipas]);
+    }
+
+    public function ipaAction(ContentView $view)
+    {
+        $contentService = $this->getRepository()->getContentService();
+        $breweryContentId = $view->getContent()->getFieldValue('brewery')->destinationContentId;
+        $brewery = $contentService->loadContent($breweryContentId);
+
+        $view->addParameters([
+            'brewery' => $brewery
+        ]);
+
+        return $view;
     }
 }

@@ -1,0 +1,8 @@
+{% extends "pagelayout.html.twig" %}
+
+{% block content %}
+    <h1>{{ ez_render_field(content, 'name') }}</h1>
+    <p>{{ ez_field_value(content, 'country') }}</p>
+    <p>{{ ez_render_field(content, 'url') }}</p>
+{% endblock %}
+
