@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Ipa;
+use eZ\Publish\Core\REST\Server\Values\CachedValue;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use eZ\Publish\Core\REST\Server\Controller;
 
@@ -15,7 +15,7 @@ class ApiController extends Controller
     /**
      * @param int $contentId
      * @Route("/ipa/{contentId}")
-     * @return Ipa
+     * @return CachedValue
      */
     public function ipaAction($contentId)
     {
@@ -23,6 +23,10 @@ class ApiController extends Controller
 
         $ipa = $service->loadIpa($contentId);
 
-        return $ipa;
+        $contentService = $this->container->get('ezpublish.api.service.content');
+        $locationId = $contentService->loadContentInfo($contentId)->mainLocationId;
+        $cached = new CachedValue($ipa, ['locationId' => $locationId]);
+
+        return $cached;
     }
 }
