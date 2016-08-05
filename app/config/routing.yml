@@ -30,3 +30,5 @@ _ezplatformRepositoryFormsRoutes:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    prefix:   %ezpublish_rest.path_prefix%
+

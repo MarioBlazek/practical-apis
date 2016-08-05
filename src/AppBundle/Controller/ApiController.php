@@ -2,21 +2,20 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Ipa;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use eZ\Publish\Core\REST\Server\Controller;
 
 /**
  * Class ApiController
  * @package AppBundle\Controller
- * @Route("/api")
  */
 class ApiController extends Controller
 {
     /**
      * @param int $contentId
      * @Route("/ipa/{contentId}")
-     * @return JsonResponse
+     * @return Ipa
      */
     public function ipaAction($contentId)
     {
@@ -24,6 +23,6 @@ class ApiController extends Controller
 
         $ipa = $service->loadIpa($contentId);
 
-        return new JsonResponse($ipa);
+        return $ipa;
     }
 }
