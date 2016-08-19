@@ -8,3 +8,11 @@ services:
     app.ipa_service:
         class: 'AppBundle\Service\IpaService'
         arguments: ['@ezpublish.api.service.content']
+
+    app.richtext.converter.reducer:
+        class: "AppBundle\Service\RichTextReducer"
+        arguments:
+            - "@ezpublish.fieldType.ezrichtext.renderer"
+            - "@ezpublish.api.service.content"
+        tags:
+            - {name: ezpublish.ezrichtext.converter.output.xhtml5, priority: 5}
