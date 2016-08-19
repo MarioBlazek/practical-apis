@@ -42,11 +42,24 @@ Install a browser extension to use browser as REST client
 
 Branch with a possible solution: `php-api`
 
-### 4. Extend eZ REST API
+### 4. Show me your image
 
-* Create a REST controller and a REST route
+* Create a IpaImageService which returns the image itself given
+  * a content id,
+  * and a image variation name.
+* Create a controller action which uses the service to deliver the image
+* Enrich the IPA entity with a URL for image delivery
+
+### 5. Extend eZ REST API
+
+* Create a IpaVisitor
+* Register it in services.yml with Tag ezpublish_rest.output.value_object_visitor
+* Create a REST controller returning the IPA object
+* Encapsulate the IPA object into a `CachedValue` object, give the location id as parameter
+
+Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
 
 Branch with possible solution: `rest-api`
 
-### 5. ezXMLText/ ezRichText
+### 6. ezXMLText/ ezRichText
 
