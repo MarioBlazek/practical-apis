@@ -4,3 +4,7 @@ services:
         class: AppBundle\Installer\AppInstaller
         tags:
             - { name: ezplatform.installer, type: practical-apis }
+
+    app.ipa_service:
+        class: 'AppBundle\Service\IpaService'
+        arguments: ['@ezpublish.api.service.content']
