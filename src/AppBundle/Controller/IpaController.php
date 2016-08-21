@@ -42,6 +42,8 @@ class IpaController extends Controller
             'brewery' => $brewery
         ]);
 
+        $this->container->get('app.matcher.representation')->setRepresentationName('no-image');
+
         return $view;
     }
 }

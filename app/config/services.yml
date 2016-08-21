@@ -8,3 +8,8 @@ services:
     app.ipa_service:
         class: 'AppBundle\Service\IpaService'
         arguments: ['@ezpublish.api.service.content']
+
+
+    app.matcher.representation:
+        class: 'AppBundle\Matcher\Representation'
+

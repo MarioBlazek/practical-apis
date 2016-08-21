@@ -50,3 +50,10 @@ ezpublish:
                         template: "line/brewery.html.twig"
                         match:
                             Identifier\ContentType: "brewery"
+
+                embed:
+                    image:
+                        template: "embed/image.html.twig"
+                        match:
+                            Identifier\ContentType: "image"
+                            app.matcher.representation: "no-image"
