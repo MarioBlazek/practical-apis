@@ -51,13 +51,20 @@ Starting branch: `master`
 Branch with a possible solution: `php-api`
 Diff: https://github.com/urbanetter/practical-apis/compare/master...php-api
 
-### 4. Show me your image
+### 3. Can I haz Imagez!!!
 
-* Create a IpaImageService which returns the image itself given
-  * a content id,
-  * and a image variation name.
-* Create a controller action which uses the service to deliver the image
 * Enrich the IPA entity with a URL for image delivery
+* Read the URL of the medium image variation of the IPA content and write it into the image field
+
+#### Hints
+* Service id of the `ImageVariationService` (actually a `VariationHandler`) is `ezpublish.fieldType.ezimage.variation_service`.
+* You get an image variation by `$imageVariationService->getVariation($content->getField('image'), $content->versionInfo, 'medium');`
+
+#### Code
+Starting branch: `php-api`
+Branch with a possible solution: `image-delivery`
+Diff: https://github.com/urbanetter/practical-apis/compare/php-api...image-delivery
+
 
 ### 5. Extend eZ REST API
 
