@@ -1,11 +1,5 @@
 # Practical API s for eZ Platform/ eZ Publish
 
-## How to install
-
-    sh installation/run.sh
-    app/console server:start
-
-
 ## Contents of the workshop
 * What an API is
 * Why you need an API as a publisher
@@ -16,31 +10,42 @@
 
 ### 1. Get to know your content for this workshop
 
-* Open frontend: `http://localhost:8000/`
-* Open backend: `http://localhost:8000/ez` (user: admin, pass: publish)
+* Open frontend: `http://api4ez.websc/`
+* Open backend: `http://api4ez.websc/ez` (user: admin, pass: publish)
 * Check content type `IPA` and `Brewery`
+* Check how the list and the detail view is implemented
+* Browse content over eZ REST API. Use a REST client for this. (There is one installed in FF) 
+* Find out how you get to the actual image data from the REST interface
 
-### 2. Get your content via ez REST API
-Install a browser extension to use browser as REST client
- 
-* Recommended in Chrome: https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo
-* Recommended in Firefox: https://addons.mozilla.org/de/firefox/addon/restclient/
-
-
-    URL: http://admin:publish@localhost:8000/api/ezp/v2/content/objects/86
+    URL: http://admin:publish@api4ez.websc/api/ezp/v2/content/objects/86
     Header: Accept: application/vnd.ez.api.content+json
     
+#### Hints
+* The project is based on the "clean" variant of the ezplatform installer
 
-### 3. Create a PHP API
+#### Code
+Starting branch: `master`
+
+### 2. Create a PHP API
 
 * Create an entity for an IPA beer, representing only the title and the review number (more to come)
-* Create a Symfony service which returns an IPA entity given a content id
-* Create a controller which outputs a JSON representation of your entity 
+* Create a `IpaService`, a Symfony service which returns an IPA entity given a content id
+* Create a controller and a route which outputs a JSON representation of your entity
+* Make sure the controller responses with 404 if the content id is not found or it is not of content type IPA.
+
+#### Bonus
 * Create an entity for a brewery.
 * Let the created service also return brewery entites if the given content is of contentType `brewery`.
 * Extend the IPA entity that it knows about the brewery entity
 
+#### Hints
+* There is a `JsonResponse` class in Symfony which automatically converts your entity to JSON and sets the proper headers.
+* Create kind of a ContentType registry for the content type ids, it frees you from a lot of calls to the ContentTypeService to translate the 'ipa' identifier to id 15.
+
+#### Code
+Starting branch: `master`
 Branch with a possible solution: `php-api`
+Diff: https://github.com/urbanetter/practical-apis/compare/master...php-api
 
 ### 4. Show me your image
 
