@@ -7,4 +7,4 @@ services:
 
     app.ipa_service:
         class: 'AppBundle\Service\IpaService'
-        arguments: ['@ezpublish.api.service.content']
+        arguments: ['@ezpublish.api.service.content', '@ezpublish.fieldType.ezimage.variation_service']

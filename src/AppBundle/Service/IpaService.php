@@ -7,6 +7,7 @@ use AppBundle\ContentTypes;
 use AppBundle\Entity\Brewery;
 use AppBundle\Entity\Ipa;
 use eZ\Publish\Core\Repository\ContentService;
+use eZ\Publish\SPI\Variation\VariationHandler;
 
 class IpaService
 {
@@ -16,11 +17,17 @@ class IpaService
     protected $contentService;
 
     /**
+     * @var VariationHandler
+     */
+    protected $imageVariationService;
+
+    /**
      * @param ContentService $contentService
      */
-    public function __construct(ContentService $contentService)
+    public function __construct(ContentService $contentService, VariationHandler $imageVariationService)
     {
         $this->contentService = $contentService;
+        $this->imageVariationService = $imageVariationService;
     }
 
     /**
@@ -42,6 +49,9 @@ class IpaService
 
         $ipa->name = $content->getFieldValue('name')->text;
         $ipa->review = $content->getFieldValue('stars')->value;
+
+        $imageVariation = $this->imageVariationService->getVariation($content->getField('image'), $content->versionInfo, 'medium');
+        $ipa->image = $imageVariation->uri;
 
         $ipa->brewery = $this->loadBrewery($content->getFieldValue('brewery')->destinationContentId);
 

@@ -16,6 +16,11 @@ class Ipa
     public $review;
 
     /**
+     * @var string
+     */
+    public $image;
+
+    /**
      * @var Brewery
      */
     public $brewery;
