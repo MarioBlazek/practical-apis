@@ -17,9 +17,12 @@
 * Browse content over eZ REST API. Use a REST client for this. (There is one installed in FF) 
 * Find out how you get to the actual image data from the REST interface
 
-    URL: http://admin:publish@api4ez.websc/api/ezp/v2/content/objects/86
-    Header: Accept: application/vnd.ez.api.content+json
-    
+```
+Header: Accept: application/vnd.ez.api.content+json
+URL of an IPA: http://admin:publish@api4ez.websc/api/ezp/v2/content/objects/57
+URL of a brewery: http://admin:publish@api4ez.websc/api/ezp/v2/content/objects/56
+```    
+
 #### Hints
 * The project is based on the "clean" variant of the ezplatform installer
 
@@ -40,7 +43,8 @@ Starting branch: `master`
 
 #### Hints
 * There is a `JsonResponse` class in Symfony which automatically converts your entity to JSON and sets the proper headers.
-* Create kind of a ContentType registry for the content type ids, it frees you from a lot of calls to the ContentTypeService to translate the 'ipa' identifier to id 15.
+* Create kind of a ContentType registry for the content type ids, it makes magic numbers like `15` much more readable as `ContentTypes::IPA`
+* Valid content id of a brewery: 56, valid content id of a IPA: 57
 
 #### Code
 Starting branch: `master`
