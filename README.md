@@ -47,11 +47,11 @@ Starting branch: `master`
 * Valid content id of a brewery: 56, valid content id of a IPA: 57
 
 #### Code
-Starting branch: `master`
-Branch with a possible solution: `php-api`
-Diff: https://github.com/urbanetter/practical-apis/compare/master...php-api
+* Starting branch: `master`
+* Branch with a possible solution: `php-api`
+* Diff: https://github.com/urbanetter/practical-apis/compare/master...php-api
 
-### 3. Can I haz Imagez!!!
+### 3. Images
 
 * Enrich the IPA entity with a URL for image delivery
 * Read the URL of the medium image variation of the IPA content and write it into the image field
@@ -61,12 +61,12 @@ Diff: https://github.com/urbanetter/practical-apis/compare/master...php-api
 * You get an image variation by `$imageVariationService->getVariation($content->getField('image'), $content->versionInfo, 'medium');`
 
 #### Code
-Starting branch: `php-api`
-Branch with a possible solution: `image-delivery`
-Diff: https://github.com/urbanetter/practical-apis/compare/php-api...image-delivery
+* Starting branch: `php-api`
+* Branch with a possible solution: `image-delivery`
+* Diff: https://github.com/urbanetter/practical-apis/compare/php-api...image-delivery
 
 
-### 5. Extend eZ REST API
+### 4. Extend eZ REST API
 
 * Create a IpaVisitor
 * Register it in services.yml with Tag ezpublish_rest.output.value_object_visitor
@@ -77,5 +77,30 @@ Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
 
 Branch with possible solution: `rest-api`
 
-### 6. ezXMLText/ ezRichText
+### 5. Representation matcher
+* Create actions in the API controller for a html and a google amp representation
+* Update the IPA entity to give back the urls to the two representations
+* Build a matcher, extending from `eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased\MultipleValued`
+* Create a override rule in `ezplatform.yml` for content type `image` and one of the two representations
+* Create the override template for a `<amp-image>`
 
+#### Hints
+* The Punk IPA (content id 57) has a image in the description
+
+#### Code
+* Starting branch: `rest-api`
+* Branch with a possible solution: `representations`
+* Diff: https://github.com/urbanetter/practical-apis/compare/rest-api...representations
+
+### 6. RichText Reducer
+* Create a Renderer `ReducerRenderer` which removes ezembeds if they embed a content of contentType `image` (content type id: 5)
+* Register renderer in services.yml with tag `ezpublish.ezrichtext.converter.output.xhtml5` and priority 5
+* Test the representation
+
+#### Bonus
+* Generalize the representation idea into an own service and entity, which controls the reducer and the matcher, so you can write in the matcher something like `$representationService->activeRepresentation->matches($this->values)`
+
+#### Hints
+* Embed render of eZ platform:  https://github.com/ezsystems/ezpublish-kernel/blob/master/eZ/Publish/Core/FieldType/RichText/Converter/Render/Embed.php
+* The `xlink:href` attribute of ezembed can either be `ezcontent://<content id>` or `ezlocation://<location id>`
+* `parse_url()` parses strings like `schema://host` into an array with the keys `schema` and `host`.
