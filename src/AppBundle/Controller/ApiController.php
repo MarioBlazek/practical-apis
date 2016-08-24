@@ -26,4 +26,20 @@ class ApiController extends Controller
 
         return new JsonResponse($ipa);
     }
+
+    /**
+     * @param int $contentId
+     * @Route("/brewery/{contentId}")
+     * @return JsonResponse
+     */
+    public function breweryAction($contentId)
+    {
+        $service = $this->container->get('app.ipa_service');
+
+        $brewery = $service->loadBrewery($contentId);
+
+        return new JsonResponse($brewery);
+    }
+
+
 }

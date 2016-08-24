@@ -28,5 +28,6 @@ _ezplatformRepositoryFormsRoutes:
     resource: "@EzSystemsRepositoryFormsBundle/Resources/config/routing.yml"
 
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@AppBundle/Controller"
     type:     annotation
+
