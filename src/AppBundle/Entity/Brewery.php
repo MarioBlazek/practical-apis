@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 
-class Ipa
+class Brewery
 {
     /**
      * @var int
@@ -16,17 +16,12 @@ class Ipa
     public $name;
 
     /**
-     * @var int
+     * @var string
      */
-    public $review;
+    public $country;
 
     /**
      * @var string
      */
-    public $image;
-
-    /**
-     * @var Brewery
-     */
-    public $brewery;
+    public $url;
 }
