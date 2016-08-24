@@ -9,8 +9,14 @@ services:
         class: 'AppBundle\Service\IpaService'
         arguments: ['@ezpublish.api.service.content', '@ezpublish.fieldType.ezimage.variation_service']
 
-    app.ezrest.value_visitor:
+    app.ezrest.value_visitor.ipa:
         parent: ezpublish_rest.output.value_object_visitor.base
         class: "AppBundle\Visitor\Ipa"
         tags:
             - { name: ezpublish_rest.output.value_object_visitor, type: AppBundle\Entity\Ipa }
+
+    app.ezrest.value_visitor.brewery:
+        parent: ezpublish_rest.output.value_object_visitor.base
+        class: "AppBundle\Visitor\Brewery"
+        tags:
+            - { name: ezpublish_rest.output.value_object_visitor, type: AppBundle\Entity\Brewery }

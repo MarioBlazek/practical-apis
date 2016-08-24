@@ -6,6 +6,11 @@ namespace AppBundle\Entity;
 class Brewery
 {
     /**
+     * @var int
+     */
+    public $id;
+
+    /**
      * @var string
      */
     public $name;

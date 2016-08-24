@@ -7,7 +7,7 @@ use eZ\Publish\Core\REST\Common\Output\Generator;
 use eZ\Publish\Core\REST\Common\Output\ValueObjectVisitor;
 use eZ\Publish\Core\REST\Common\Output\Visitor;
 
-class Ipa extends ValueObjectVisitor
+class Brewery extends ValueObjectVisitor
 {
 
     /**
@@ -19,29 +19,27 @@ class Ipa extends ValueObjectVisitor
      */
     public function visit(Visitor $visitor, Generator $generator, $data)
     {
-        $mediaType = 'ipa';
+        $mediaType = 'brewery';
 
-        $generator->startObjectElement('ipa', $mediaType);
+        $generator->startObjectElement('brewery', $mediaType);
 
         $visitor->setHeader('Content-Type', $generator->getMediaType($mediaType));
 
         $generator->startAttribute(
             'href',
-            $this->router->generate('rest_ipa', array('contentId' => $data->id))
+            $this->router->generate('rest_brewery', array('contentId' => $data->id))
         );
         $generator->endAttribute('href');
 
         $generator->startValueElement('name', $data->name);
         $generator->endValueElement('name');
 
-        $generator->startValueElement('rating', $data->review);
-        $generator->endValueElement('rating');
+        $generator->startValueElement('country', $data->country);
+        $generator->endValueElement('country');
 
-        $generator->startValueElement('image', $data->image);
-        $generator->endValueElement('image');
+        $generator->startValueElement('url', $data->url);
+        $generator->endValueElement('url');
 
-        $visitor->visitValueObject($data->brewery);
-
-        $generator->endObjectElement('ipa');
+        $generator->endObjectElement('brewery');
     }
 }

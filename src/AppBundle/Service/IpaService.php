@@ -76,6 +76,7 @@ class IpaService
 
         $brewery = new Brewery();
 
+        $brewery->id = $contentId;
         $brewery->name = $content->getFieldValue('name')->text;
 
         $countries = $content->getFieldValue('country')->countries;
