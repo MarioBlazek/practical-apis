@@ -68,14 +68,27 @@ Starting branch: `master`
 
 ### 4. Extend eZ REST API
 
-* Create a IpaVisitor
-* Register it in services.yml with Tag ezpublish_rest.output.value_object_visitor
+* Create a IpaVisitor, setting the right mime types and href attributes if they make sense
+* Register it in services.yml with Tag ezpublish_rest.output.value_object_visitor for the IPA entity
 * Create a REST controller returning the IPA object
 * Encapsulate the IPA object into a `CachedValue` object, give the location id as parameter
 
-Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
+#### Bonus
+* Create a BreweryVisitor
+* Register it the same as the IpaVisitor
 
+
+#### Hints
+* Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
+* The visitor of the content object: https://github.com/ezsystems/ezpublish-kernel/blob/master/eZ/Publish/Core/REST/Server/Output/ValueObjectVisitor/RestContent.php
+* Since we only allow reading requests (GET) you can restrict the route to GET requests
+* Your visitor needs to start with an opening `startObjectElement()`.
+* `$visitor->visitValueObject()` allows to visit chid objects like... a brewery.
+
+#### Code
+Starting branch: `image-delivery`
 Branch with possible solution: `rest-api`
+Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...rest-api
 
 ### 5. Representation matcher
 * Create actions in the API controller for a html and a google amp representation
