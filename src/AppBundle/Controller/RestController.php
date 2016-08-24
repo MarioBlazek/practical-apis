@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use eZ\Publish\Core\REST\Server\Controller;
 
+/**
+ * @Route("%ezpublish_rest.path_prefix%")
+ */
 class RestController extends Controller
 {
     /**
