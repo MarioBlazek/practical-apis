@@ -68,7 +68,7 @@ Starting branch: `master`
 
 ### 4. Extend eZ REST API
 
-* Create a IpaVisitor, setting the right mime types and href attributes if they make sense
+* Create a IpaVisitor, setting the right mime types and href attributes if they make sense (you might need to add ids to the entities to create proper urls)
 * Register it in services.yml with Tag `ezpublish_rest.output.value_object_visitor` for the IPA entity
 * Create a new `RestController` with a `ipaAction` returning the IPA object
 * Check your new REST API with the REST client
@@ -77,7 +77,7 @@ Starting branch: `master`
 #### Bonus
 * Create a BreweryVisitor
 * Register it the same as the IpaVisitor
-
+* Create a `breweryAction` on the `RestController`
 
 #### Hints
 * Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
@@ -85,36 +85,39 @@ Starting branch: `master`
 * Since we only allow reading requests (GET) you can restrict the route to GET requests
 * Your visitor needs to start with an opening `startObjectElement()`.
 * `$visitor->visitValueObject()` allows to visit chid objects like... a brewery.
+* Url for a valid REST representation of an IPA beer is something similar to `http://admin:publish@api4ez.websc/api/ezp/v2/ipa/57`
 
 #### Code
-Starting branch: `image-delivery`
-Branch with possible solution: `rest-api`
-Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...rest-api
+* Starting branch: `image-delivery`
+* Branch with possible solution: `rest-api`
+* Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...ezrest-api
 
 ### 5. Representation matcher
-* Create actions in the API controller for a html and a google amp representation
-* Update the IPA entity to give back the urls to the two representations
+* Pretend you want to not display all the images in the detail view of an IPA. (Yes, that's hard, I know ;)
 * Build a matcher, extending from `eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased\MultipleValued`
 * Create a override rule in `ezplatform.yml` for content type `image` and one of the two representations
-* Create the override template for a `<amp-image>`
+* Create the override template for a image which does display `There is no image` instead of the image.
+* Set the representation in the `ipaAction` of the `IpaController`
 
 #### Hints
-* The Punk IPA (content id 57) has a image in the description
+* Check the output of the rendered ez Rich Text at http://api4ez.websc/Punk-IPA
 
 #### Code
-* Starting branch: `rest-api`
+* Starting branch: `ezrest-api`
 * Branch with a possible solution: `representations`
-* Diff: https://github.com/urbanetter/practical-apis/compare/rest-api...representations
+* Diff: https://github.com/urbanetter/practical-apis/compare/ezrest-api...representations
 
 ### 6. RichText Reducer
 * Create a Renderer `ReducerRenderer` which removes ezembeds if they embed a content of contentType `image` (content type id: 5)
 * Register renderer in services.yml with tag `ezpublish.ezrichtext.converter.output.xhtml5` and priority 5
-* Test the representation
-
-#### Bonus
-* Generalize the representation idea into an own service and entity, which controls the reducer and the matcher, so you can write in the matcher something like `$representationService->activeRepresentation->matches($this->values)`
 
 #### Hints
+* Check the output of the rendered ez Rich Text at http://api4ez.websc/Punk-IPA
 * Embed render of eZ platform:  https://github.com/ezsystems/ezpublish-kernel/blob/master/eZ/Publish/Core/FieldType/RichText/Converter/Render/Embed.php
 * The `xlink:href` attribute of ezembed can either be `ezcontent://<content id>` or `ezlocation://<location id>`
 * `parse_url()` parses strings like `schema://host` into an array with the keys `schema` and `host`.
+
+#### Code
+* Starting branch: `ezrest-api`
+* Branch with a possible solution: `richtext-reducer`
+* Diff: https://github.com/urbanetter/practical-apis/compare/ezrest-api...richtext-reducer
