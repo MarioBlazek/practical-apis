@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.17)
 # Datenbank: apis
-# Erstellt am: 2016-07-28 21:07:17 +0000
+# Erstellt am: 2016-08-24 18:20:56 +0000
 # ************************************************************
 
 
@@ -125,7 +125,8 @@ VALUES
 	(60,1),
 	(61,1),
 	(62,1),
-	(63,1);
+	(63,1),
+	(64,1);
 
 /*!40000 ALTER TABLE `ezcobj_state_link` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -356,13 +357,14 @@ VALUES
 	(1,1,50,2,3,1080220220,'Files',14,1080220220,'732a5acd01b51a6fe6eab448ad4138a9',3,1),
 	(1,1,51,2,3,1080220233,'Multimedia',14,1080220233,'09082deb98662a104f325aaa8c4933d3',3,1),
 	(14,1,56,2,3,1469731117,'Brew Dog',14,1469731117,'254500365f472bd4c891658e0a144c87',1,1),
-	(15,2,57,2,3,1469735904,'Punk IPA',14,1469733409,'7e363513b170eba685ac8bfb20ec88fc',1,1),
+	(15,5,57,2,3,1471634328,'Punk IPA',14,1469733409,'7e363513b170eba685ac8bfb20ec88fc',1,1),
 	(15,2,58,2,3,1469735964,'Dead Pony Club',14,1469733567,'a8d5a544afe51c699f26d7b330ca8a4f',1,1),
 	(14,1,59,2,3,1469733723,'Urb & Pivo',14,1469733723,'fb6b33301eeca6f2f04712ff4c9f7254',1,1),
 	(15,2,60,2,3,1469736039,'Siggibräu',14,1469733987,'0a6652a04dcb78e142f89314f320a9eb',1,1),
 	(5,1,61,2,3,1469734813,'Punk IPA',14,1469734813,'23934975915185a3f76f650aaed066fe',3,1),
 	(5,1,62,2,3,1469734923,'Dead Pony Club',14,1469734923,'ef62e0b2c864414cf00348c3f5295159',3,1),
-	(5,1,63,2,3,1469735547,'Siggibräu',14,1469735547,'8be57ffc6d68dc82b734c3d551a9f1fe',3,1);
+	(5,1,63,2,3,1469735547,'Siggibräu',14,1469735547,'8be57ffc6d68dc82b734c3d551a9f1fe',3,1),
+	(5,1,64,2,3,1471634050,'Punk IPA box',14,1471634050,'7fd8b2a6a285e73bf8f0ae65e21bf8b9',3,1);
 
 /*!40000 ALTER TABLE `ezcontentobject` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -425,10 +427,19 @@ VALUES
 	(0,188,56,NULL,30,'BrewDog UK','ezurl',204,'eng-GB',3,0,'',1),
 	(0,189,57,NULL,NULL,'Punk IPA','ezstring',205,'eng-GB',3,0,'punk ipa',1),
 	(0,189,57,NULL,NULL,'Punk IPA','ezstring',205,'eng-GB',3,0,'punk ipa',2),
+	(0,189,57,NULL,NULL,'Punk IPA','ezstring',205,'eng-GB',3,0,'punk ipa',3),
+	(0,189,57,NULL,NULL,'Punk IPA','ezstring',205,'eng-GB',3,0,'punk ipa',4),
+	(0,189,57,NULL,NULL,'Punk IPA','ezstring',205,'eng-GB',3,0,'punk ipa',5),
 	(0,191,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>Probably my favorite IPA. Some citrus and grapefruit notes. And just.... awsome.</para></section>\n','ezrichtext',207,'eng-GB',3,0,'',1),
 	(0,191,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>Probably my favorite IPA. Some citrus and grapefruit notes. And just.... awsome.</para></section>\n','ezrichtext',207,'eng-GB',3,0,'',2),
+	(0,191,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>Probably my favorite IPA. Some citrus and grapefruit notes. And just.... awsome.</para><para> </para><ezembed xlink:href=\"ezcontent://64\" view=\"embed\" ezxhtml:class=\"ez-embed-type-image\"><ezconfig><ezvalue key=\"size\">small</ezvalue></ezconfig></ezembed></section>\n','ezrichtext',207,'eng-GB',3,0,'',3),
+	(0,191,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>Probably my favorite IPA. Some citrus and grapefruit notes. And just.... awsome.</para><para> </para><ezembed xlink:href=\"ezcontent://64\" view=\"embed\" ezxhtml:class=\"ez-embed-type-image\"><ezconfig><ezvalue key=\"size\">small</ezvalue></ezconfig></ezembed><ezembed xlink:href=\"ezcontent://64\" view=\"embed\"/></section>\n','ezrichtext',207,'eng-GB',3,0,'',4),
+	(0,191,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>Probably my favorite IPA. Some citrus and grapefruit notes. And just.... awsome.</para><para> </para><ezembed xlink:href=\"ezcontent://64\" view=\"embed\" ezxhtml:class=\"ez-embed-type-image\"><ezconfig><ezvalue key=\"size\">small</ezvalue></ezconfig></ezembed></section>\n','ezrichtext',207,'eng-GB',3,0,'',5),
 	(0,192,57,NULL,56,NULL,'ezobjectrelation',208,'eng-GB',3,56,'',1),
 	(0,192,57,NULL,56,NULL,'ezobjectrelation',208,'eng-GB',3,56,'',2),
+	(0,192,57,NULL,56,NULL,'ezobjectrelation',208,'eng-GB',3,56,'',3),
+	(0,192,57,NULL,56,NULL,'ezobjectrelation',208,'eng-GB',3,56,'',4),
+	(0,192,57,NULL,56,NULL,'ezobjectrelation',208,'eng-GB',3,56,'',5),
 	(0,189,58,NULL,NULL,'Dead Pony Club','ezstring',209,'eng-GB',3,0,'dead pony club',1),
 	(0,189,58,NULL,NULL,'Dead Pony Club','ezstring',209,'eng-GB',3,0,'dead pony club',2),
 	(0,191,58,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>With about half the alcohol volume percent of Punk IPA, it\'s the light alternative of Punk IPA. Still a IPA, of course. And an excellent one.</para></section>\n','ezrichtext',211,'eng-GB',3,0,'',1),
@@ -455,8 +466,14 @@ VALUES
 	(0,118,63,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"siggibraeu.jpeg\"\n    suffix=\"jpeg\" basename=\"siggibraeu\" dirpath=\"var/site/storage/images/8/2/2/0/228-1-eng-GB\" url=\"var/site/storage/images/8/2/2/0/228-1-eng-GB/siggibraeu.jpeg\"\n    original_filename=\"siggibraeu.jpeg\" mime_type=\"image/jpeg\" width=\"289\"\n    height=\"361\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1469735546\">\n  <original attribute_id=\"228\" attribute_version=\"1\" attribute_language=\"eng-GB\"/>\n  <information Height=\"361\" Width=\"289\" IsColor=\"1\"/>\n</ezimage>','ezimage',228,'eng-GB',3,0,'',1),
 	(0,193,57,NULL,NULL,NULL,'ezinteger',229,'eng-GB',3,0,'',1),
 	(0,193,57,NULL,5,NULL,'ezinteger',229,'eng-GB',3,5,'',2),
+	(0,193,57,NULL,5,NULL,'ezinteger',229,'eng-GB',3,5,'',3),
+	(0,193,57,NULL,5,NULL,'ezinteger',229,'eng-GB',3,5,'',4),
+	(0,193,57,NULL,5,NULL,'ezinteger',229,'eng-GB',3,5,'',5),
 	(0,194,57,NULL,NULL,NULL,'ezimage',230,'eng-GB',3,0,'',1),
 	(0,194,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"punk_ipa.png\"\n    suffix=\"png\" basename=\"punk_ipa\" dirpath=\"var/site/storage/images/0/3/2/0/230-2-eng-GB\" url=\"var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png\"\n    original_filename=\"punk_ipa.png\" mime_type=\"image/png\" width=\"290\"\n    height=\"1135\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1469735903\">\n  <original attribute_id=\"230\" attribute_version=\"2\" attribute_language=\"eng-GB\"/>\n  <information Height=\"1135\" Width=\"290\" IsColor=\"1\"/>\n</ezimage>','ezimage',230,'eng-GB',3,0,'',2),
+	(0,194,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"punk_ipa.png\"\n    suffix=\"png\" basename=\"punk_ipa\" dirpath=\"var/site/storage/images/0/3/2/0/230-2-eng-GB\" url=\"var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png\"\n    original_filename=\"punk_ipa.png\" mime_type=\"image/png\" width=\"290\"\n    height=\"1135\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1471634104\">\n  <original attribute_id=\"230\" attribute_version=\"3\" attribute_language=\"eng-GB\"/>\n  <information Height=\"1135\" Width=\"290\" IsColor=\"1\"/>\n</ezimage>','ezimage',230,'eng-GB',3,0,'',3),
+	(0,194,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"punk_ipa.png\"\n    suffix=\"png\" basename=\"punk_ipa\" dirpath=\"var/site/storage/images/0/3/2/0/230-2-eng-GB\" url=\"var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png\"\n    original_filename=\"punk_ipa.png\" mime_type=\"image/png\" width=\"290\"\n    height=\"1135\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1471634201\">\n  <original attribute_id=\"230\" attribute_version=\"4\" attribute_language=\"eng-GB\"/>\n  <information Height=\"1135\" Width=\"290\" IsColor=\"1\"/>\n</ezimage>','ezimage',230,'eng-GB',3,0,'',4),
+	(0,194,57,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"punk_ipa.png\"\n    suffix=\"png\" basename=\"punk_ipa\" dirpath=\"var/site/storage/images/0/3/2/0/230-2-eng-GB\" url=\"var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png\"\n    original_filename=\"punk_ipa.png\" mime_type=\"image/png\" width=\"290\"\n    height=\"1135\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1471634327\">\n  <original attribute_id=\"230\" attribute_version=\"5\" attribute_language=\"eng-GB\"/>\n  <information Height=\"1135\" Width=\"290\" IsColor=\"1\"/>\n</ezimage>','ezimage',230,'eng-GB',3,0,'',5),
 	(0,193,58,NULL,NULL,NULL,'ezinteger',231,'eng-GB',3,0,'',1),
 	(0,193,58,NULL,4,NULL,'ezinteger',231,'eng-GB',3,4,'',2),
 	(0,194,58,NULL,NULL,NULL,'ezimage',232,'eng-GB',3,0,'',1),
@@ -464,7 +481,10 @@ VALUES
 	(0,193,60,NULL,NULL,NULL,'ezinteger',233,'eng-GB',3,0,'',1),
 	(0,193,60,NULL,4,NULL,'ezinteger',233,'eng-GB',3,4,'',2),
 	(0,194,60,NULL,NULL,NULL,'ezimage',234,'eng-GB',3,0,'',1),
-	(0,194,60,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"siggibraeu.jpeg\"\n    suffix=\"jpeg\" basename=\"siggibraeu\" dirpath=\"var/site/storage/images/4/3/2/0/234-2-eng-GB\" url=\"var/site/storage/images/4/3/2/0/234-2-eng-GB/siggibraeu.jpeg\"\n    original_filename=\"siggibraeu.jpeg\" mime_type=\"image/jpeg\" width=\"289\"\n    height=\"361\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1469736038\">\n  <original attribute_id=\"234\" attribute_version=\"2\" attribute_language=\"eng-GB\"/>\n  <information Height=\"361\" Width=\"289\" IsColor=\"1\"/>\n</ezimage>','ezimage',234,'eng-GB',3,0,'',2);
+	(0,194,60,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"siggibraeu.jpeg\"\n    suffix=\"jpeg\" basename=\"siggibraeu\" dirpath=\"var/site/storage/images/4/3/2/0/234-2-eng-GB\" url=\"var/site/storage/images/4/3/2/0/234-2-eng-GB/siggibraeu.jpeg\"\n    original_filename=\"siggibraeu.jpeg\" mime_type=\"image/jpeg\" width=\"289\"\n    height=\"361\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1469736038\">\n  <original attribute_id=\"234\" attribute_version=\"2\" attribute_language=\"eng-GB\"/>\n  <information Height=\"361\" Width=\"289\" IsColor=\"1\"/>\n</ezimage>','ezimage',234,'eng-GB',3,0,'',2),
+	(0,116,64,NULL,NULL,'Punk IPA box','ezstring',235,'eng-GB',3,0,'punk ipa box',1),
+	(0,117,64,NULL,NULL,'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<section xmlns=\"http://docbook.org/ns/docbook\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ezxhtml=\"http://ez.no/xmlns/ezpublish/docbook/xhtml\" xmlns:ezcustom=\"http://ez.no/xmlns/ezpublish/docbook/custom\" version=\"5.0-variant ezpublish-1.0\"><para>A box full of goodness.</para></section>\n','ezrichtext',236,'eng-GB',3,0,'',1),
+	(0,118,64,NULL,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"punk_ipa_box.jpg\"\n    suffix=\"jpg\" basename=\"punk_ipa_box\" dirpath=\"var/site/storage/images/7/3/2/0/237-1-eng-GB\" url=\"var/site/storage/images/7/3/2/0/237-1-eng-GB/punk_ipa_box.jpg\"\n    original_filename=\"punk_ipa_box.jpg\" mime_type=\"image/jpeg\" width=\"1536\"\n    height=\"2048\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1471634050\">\n  <original attribute_id=\"237\" attribute_version=\"1\" attribute_language=\"eng-GB\"/>\n  <information Height=\"2048\" Width=\"1536\" IsColor=\"1\"/>\n</ezimage>','ezimage',237,'eng-GB',3,0,'',1);
 
 /*!40000 ALTER TABLE `ezcontentobject_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -483,7 +503,13 @@ VALUES
 	(192,60,1,12,8,59),
 	(192,57,2,13,8,56),
 	(192,58,2,14,8,56),
-	(192,60,2,15,8,59);
+	(192,60,2,15,8,59),
+	(192,57,3,16,8,56),
+	(0,57,3,17,2,64),
+	(0,57,4,18,2,64),
+	(192,57,4,19,8,56),
+	(0,57,5,20,2,64),
+	(192,57,5,21,8,56);
 
 /*!40000 ALTER TABLE `ezcontentobject_link` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -513,6 +539,9 @@ VALUES
 	('eng-GB',1,56,2,'Brew Dog','eng-GB'),
 	('eng-GB',1,57,2,'Punk IPA','eng-GB'),
 	('eng-GB',2,57,2,'Punk IPA','eng-GB'),
+	('eng-GB',3,57,2,'Punk IPA','eng-GB'),
+	('eng-GB',4,57,2,'Punk IPA','eng-GB'),
+	('eng-GB',5,57,2,'Punk IPA','eng-GB'),
 	('eng-GB',1,58,2,'Dead Pony Club','eng-GB'),
 	('eng-GB',2,58,2,'Dead Pony Club','eng-GB'),
 	('eng-GB',1,59,2,'Urb & Pivo','eng-GB'),
@@ -520,7 +549,8 @@ VALUES
 	('eng-GB',2,60,2,'Siggibräu','eng-GB'),
 	('eng-GB',1,61,2,'Punk IPA','eng-GB'),
 	('eng-GB',1,62,2,'Dead Pony Club','eng-GB'),
-	('eng-GB',1,63,2,'Siggibräu','eng-GB');
+	('eng-GB',1,63,2,'Siggibräu','eng-GB'),
+	('eng-GB',1,64,2,'Punk IPA box','eng-GB');
 
 /*!40000 ALTER TABLE `ezcontentobject_name` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -554,13 +584,14 @@ VALUES
 	(50,1,1,2,0,0,52,1081860720,52,43,'media/files','/1/43/52/',0,'0b113a208f7890f9ad3c24444ff5988c',9,1),
 	(51,1,1,2,0,0,53,1081860720,53,43,'media/multimedia','/1/43/53/',0,'4f18b82c75f10aad476cae5adf98c11f',9,1),
 	(56,1,1,2,0,0,58,1469731117,58,2,'node_2/brew_dog','/1/2/58/',0,'c99200e9ed2bf23923ba1ab54ba1b32f',1,1),
-	(57,1,2,2,0,0,59,1469733409,59,2,'node_2/punk_ipa','/1/2/59/',0,'be93108b321375eda8567c17f0e61794',1,1),
+	(57,1,5,2,0,0,59,1469733409,59,2,'node_2/punk_ipa','/1/2/59/',0,'be93108b321375eda8567c17f0e61794',1,1),
 	(58,1,2,2,0,0,60,1469733567,60,2,'node_2/dead_pony_club','/1/2/60/',0,'df2f0e264a3724b6979e899eca17ff0d',1,1),
 	(59,1,1,2,0,0,61,1469733723,61,2,'node_2/urb_pivo','/1/2/61/',0,'1fdce95d54c737d44c5bb91243a6fc5a',1,1),
 	(60,1,2,2,0,0,62,1469733987,62,2,'node_2/siggibraeu','/1/2/62/',0,'e32429caff3e3f894ddb72000ed510cb',1,1),
 	(61,1,1,3,0,0,63,1469734813,63,51,'media/images/punk_ipa','/1/43/51/63/',0,'a17c51a68c2db3c4306f88c769ef50b6',1,1),
 	(62,1,1,3,0,0,64,1469734923,64,51,'media/images//dead_pony_club','/1/43/51/64/',0,'1e03af9dad93c88a89da78d76637ce6a',1,1),
-	(63,1,1,3,0,0,65,1469735547,65,51,'media/images/siggibraeu','/1/43/51/65/',0,'0e450c5213688d941b063bfb3ce8debf',1,1);
+	(63,1,1,3,0,0,65,1469735547,65,51,'media/images/siggibraeu','/1/43/51/65/',0,'0e450c5213688d941b063bfb3ce8debf',1,1),
+	(64,1,1,3,0,0,66,1471634050,66,51,'media/images/punk_ipa_box','/1/43/51/66/',0,'b791cbd712fcbf9319ecbbdce187014d',1,1);
 
 /*!40000 ALTER TABLE `ezcontentobject_tree` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -595,9 +626,13 @@ VALUES
 	(61,1469734812,14,520,2,3,1469734813,1,0,1,0),
 	(62,1469734922,14,521,2,3,1469734923,1,0,1,0),
 	(63,1469735545,14,522,2,3,1469735547,1,0,1,0),
-	(57,1469735902,14,523,2,3,1469735904,1,0,2,0),
+	(57,1469735902,14,523,2,3,1471634106,3,0,2,0),
 	(58,1469735962,14,524,2,3,1469735964,1,0,2,0),
-	(60,1469736037,14,525,2,3,1469736039,1,0,2,0);
+	(60,1469736037,14,525,2,3,1469736039,1,0,2,0),
+	(64,1471634048,14,526,2,3,1471634050,1,0,1,0),
+	(57,1471634104,14,527,2,3,1471634203,3,0,3,0),
+	(57,1471634201,14,528,2,3,1471634328,3,0,4,0),
+	(57,1471634327,14,529,2,3,1471634328,1,0,5,0);
 
 /*!40000 ALTER TABLE `ezcontentobject_version` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -661,7 +696,11 @@ VALUES
 	(228,'var/site/storage/images/8/2/2/0/228-1-eng-GB/siggibraeu.jpeg',6),
 	(230,'var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png',7),
 	(232,'var/site/storage/images/2/3/2/0/232-2-eng-GB/dead_pony_club.png',8),
-	(234,'var/site/storage/images/4/3/2/0/234-2-eng-GB/siggibraeu.jpeg',9);
+	(234,'var/site/storage/images/4/3/2/0/234-2-eng-GB/siggibraeu.jpeg',9),
+	(237,'var/site/storage/images/7/3/2/0/237-1-eng-GB/punk_ipa_box.jpg',10),
+	(230,'var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png',11),
+	(230,'var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png',12),
+	(230,'var/site/storage/images/0/3/2/0/230-2-eng-GB/punk_ipa.png',13);
 
 /*!40000 ALTER TABLE `ezimagefile` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1934,7 +1973,8 @@ VALUES
 	(60,1,0,48,1,2,2,'e32429caff3e3f894ddb72000ed510cb','0',1,1,0,0),
 	(61,1,0,49,1,2,51,'a17c51a68c2db3c4306f88c769ef50b6','0',1,1,0,0),
 	(62,1,0,50,1,5,51,'1e03af9dad93c88a89da78d76637ce6a','0',1,1,0,0),
-	(63,1,0,51,1,2,51,'0e450c5213688d941b063bfb3ce8debf','0',1,1,0,0);
+	(63,1,0,51,1,2,51,'0e450c5213688d941b063bfb3ce8debf','0',1,1,0,0),
+	(64,1,0,52,1,2,51,'b791cbd712fcbf9319ecbbdce187014d','0',1,1,0,0);
 
 /*!40000 ALTER TABLE `eznode_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2877,6 +2917,7 @@ VALUES
 	('eznode:51','eznode',1,32,0,0,1,18,17,'images','59b514174bffe4ae402b3d63aad79fe0'),
 	('eznode:64','eznode',0,50,0,1,3,50,18,'Dead-Pony-Club','97b82fc55ee3adae2291fd2eb5189b7e'),
 	('eznode:65','eznode',0,51,0,1,3,51,18,'Siggibraeu','ac94f47d1bb0a3d3067a4e3f5fc9e0ef'),
+	('eznode:66','eznode',0,52,0,1,3,52,18,'Punk-IPA-box','ba027f37db5e20ef98192585e8857fe5'),
 	('eznode:63','eznode',0,48,0,1,3,48,18,'Punk-IPA','e7b7864f7e75ea4e068d52e510d60070');
 
 /*!40000 ALTER TABLE `ezurlalias_ml` ENABLE KEYS */;
@@ -2940,7 +2981,8 @@ VALUES
 	(48),
 	(49),
 	(50),
-	(51);
+	(51),
+	(52);
 
 /*!40000 ALTER TABLE `ezurlalias_ml_incr` ENABLE KEYS */;
 UNLOCK TABLES;
