@@ -93,29 +93,31 @@ Starting branch: `master`
 * Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...ezrest-api
 
 ### 5. Representation matcher
-* Create actions in the API controller for a html and a google amp representation
-* Update the IPA entity to give back the urls to the two representations
+* Pretend you want to not display all the images in the detail view of an IPA. (Yes, that's hard, I know ;)
 * Build a matcher, extending from `eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased\MultipleValued`
-* Create a override rule for the `embed` view type in `ezplatform.yml` for content type `image` and one of the two representations
-* Create the override template for a `<amp-image>`
+* Create a override rule in `ezplatform.yml` for content type `image` and one of the two representations
+* Create the override template for a image which does display `There is no image` instead of the image.
+* Set the representation in the `ipaAction` of the `IpaController`
 
 #### Hints
-* The Punk IPA (content id 57) has a image in the description
+* Check the output of the rendered ez Rich Text at http://api4ez.websc/Punk-IPA
 
 #### Code
-* Starting branch: `rest-api`
+* Starting branch: `ezrest-api`
 * Branch with a possible solution: `representations`
-* Diff: https://github.com/urbanetter/practical-apis/compare/rest-api...representations
+* Diff: https://github.com/urbanetter/practical-apis/compare/ezrest-api...representations
 
 ### 6. RichText Reducer
 * Create a Renderer `ReducerRenderer` which removes ezembeds if they embed a content of contentType `image` (content type id: 5)
 * Register renderer in services.yml with tag `ezpublish.ezrichtext.converter.output.xhtml5` and priority 5
-* Test the representation
-
-#### Bonus
-* Generalize the representation idea into an own service and entity, which controls the reducer and the matcher, so you can write in the matcher something like `$representationService->activeRepresentation->matches($this->values)`
 
 #### Hints
+* Check the output of the rendered ez Rich Text at http://api4ez.websc/Punk-IPA
 * Embed render of eZ platform:  https://github.com/ezsystems/ezpublish-kernel/blob/master/eZ/Publish/Core/FieldType/RichText/Converter/Render/Embed.php
 * The `xlink:href` attribute of ezembed can either be `ezcontent://<content id>` or `ezlocation://<location id>`
 * `parse_url()` parses strings like `schema://host` into an array with the keys `schema` and `host`.
+
+#### Code
+* Starting branch: `ezrest-api`
+* Branch with a possible solution: `richtext-reducer`
+* Diff: https://github.com/urbanetter/practical-apis/compare/ezrest-api...richtext-reducer
