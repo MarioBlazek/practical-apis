@@ -10,7 +10,7 @@ class RestController extends Controller
 {
     /**
      * @param int $contentId
-     * @Route("/ipa/{contentId}")
+     * @Route("/ipa/{contentId}", name="rest_ipa")
      * @return CachedValue
      */
     public function ipaAction($contentId)

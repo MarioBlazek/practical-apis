@@ -47,6 +47,7 @@ class IpaService
 
         $ipa = new Ipa();
 
+        $ipa->id = $contentId;
         $ipa->name = $content->getFieldValue('name')->text;
         $ipa->review = $content->getFieldValue('stars')->value;
 

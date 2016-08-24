@@ -6,6 +6,11 @@ namespace AppBundle\Entity;
 class Ipa
 {
     /**
+     * @var int
+     */
+    public $id;
+
+    /**
      * @var string
      */
     public $name;

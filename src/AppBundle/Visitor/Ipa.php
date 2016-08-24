@@ -19,7 +19,17 @@ class Ipa extends ValueObjectVisitor
      */
     public function visit(Visitor $visitor, Generator $generator, $data)
     {
-        $generator->startObjectElement('ipa');
+        $mediaType = 'ipa';
+
+        $generator->startObjectElement('ipa', $mediaType);
+
+        $visitor->setHeader('Content-Type', $generator->getMediaType($mediaType));
+
+        $generator->startAttribute(
+            'href',
+            $this->router->generate('rest_ipa', array('contentId' => $data->id))
+        );
+        $generator->endAttribute('href');
 
         $generator->startValueElement('name', $data->name);
         $generator->endValueElement('name');
