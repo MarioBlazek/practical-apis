@@ -68,7 +68,7 @@ Starting branch: `master`
 
 ### 4. Extend eZ REST API
 
-* Create a IpaVisitor, setting the right mime types and href attributes if they make sense
+* Create a IpaVisitor, setting the right mime types and href attributes if they make sense (you might need to add ids to the entities to create proper urls)
 * Register it in services.yml with Tag `ezpublish_rest.output.value_object_visitor` for the IPA entity
 * Create a new `RestController` with a `ipaAction` returning the IPA object
 * Check your new REST API with the REST client
@@ -77,7 +77,7 @@ Starting branch: `master`
 #### Bonus
 * Create a BreweryVisitor
 * Register it the same as the IpaVisitor
-
+* Create a `breweryAction` on the `RestController`
 
 #### Hints
 * Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
@@ -85,17 +85,18 @@ Starting branch: `master`
 * Since we only allow reading requests (GET) you can restrict the route to GET requests
 * Your visitor needs to start with an opening `startObjectElement()`.
 * `$visitor->visitValueObject()` allows to visit chid objects like... a brewery.
+* Url for a valid REST representation of an IPA beer is something similar to `http://admin:publish@api4ez.websc/api/ezp/v2/ipa/57`
 
 #### Code
-Starting branch: `image-delivery`
-Branch with possible solution: `rest-api`
-Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...rest-api
+* Starting branch: `image-delivery`
+* Branch with possible solution: `rest-api`
+* Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...ezrest-api
 
 ### 5. Representation matcher
 * Create actions in the API controller for a html and a google amp representation
 * Update the IPA entity to give back the urls to the two representations
 * Build a matcher, extending from `eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased\MultipleValued`
-* Create a override rule in `ezplatform.yml` for content type `image` and one of the two representations
+* Create a override rule for the `embed` view type in `ezplatform.yml` for content type `image` and one of the two representations
 * Create the override template for a `<amp-image>`
 
 #### Hints
