@@ -4,7 +4,7 @@
     cd practical-apis
     composer install --no-dev
     (Enter own db name and db user/ password)
-    app/console doctrine:db:create
+    app/console doctrine:database:create
     app/console ezplatform:install practical-apis
     
 # Run
