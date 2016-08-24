@@ -1,81 +1,120 @@
-# eZ Platform
+# Practical API s for eZ Platform/ eZ Publish
 
-## What is eZ Platform ?
-*eZ Platform* is a 100% open source professional CMS (Content Management System) developed by eZ Systems AS and the eZ Community.
+## Contents of the workshop
+* What an API is
+* Why you need an API as a publisher
+* How you create an API
+* How to handle ezXMLText/ ezRichText
 
-*eZ Platform* is the 6th generation of *eZ Publish*, it is built on top of the Symfony framework (Full Stack).
-It has been in development since 2011, and integral part of the *eZ Publish Platform 5.x* as "Platform stack" since 2012.
+## Exercises
 
-## eZ Publish vs. eZ Platform
-This repository contains *eZ Platform* (formerly known also as *eZ Publish 6*) the next generation cms which uses the same Symfony kernel as *eZ Publish 5*, but does not include the legacy kernel, nor its library dependencies.
-eZ Platform is where the new features are added.
+### 1. Get to know your content for this workshop
 
-The [eZ Publish 5](https://github.com/ezsystems/ezpublish-community) repository, mostly maintained for backwards compatibility, integrates eZ Publish Legacy.
+* Open frontend: `http://api4ez.websc/`
+* Open backend: `http://api4ez.websc/ez` (user: admin, pass: publish)
+* Check content type `IPA` and `Brewery`
+* Check how the list and the detail view is implemented
+* Browse content over eZ REST API. Use a REST client for this. (There is one installed in FF) 
+* Find out how you get to the actual image data from the REST interface
 
-### Abstract:
-- **Very extensible** *You can extend the application and the content model in many ways*
-- **Future & backwards compatible** *Strong BC policy on data as well as code*
-- **Multi channel by design** *Strong focus on separation between <sup>semantic</sup> content & design*
-- **Scalable** *Easily scale across multiple servers out of the box*
-- **Future proof** *Architecture designed to allow even more content scalability and performance in the future*
-- **Stable** *Built on experience building CMS since early 2000, and in production since 2012*
-- **Integration friendly** *Numerous events and signals to hook into for advanced workflow needs*
+```
+Header: Accept: application/vnd.ez.api.content+json
+URL of an IPA: http://admin:publish@api4ez.websc/api/ezp/v2/content/objects/57
+URL of a brewery: http://admin:publish@api4ez.websc/api/ezp/v2/content/objects/56
+```    
 
-### Main packages:
-- **ezpublish-kernel** (building on top of **Symfony Framework**):
- - Content Repository with a highly flexible content model exposed via a Public API.<br>
-   Out of the box powered by SQL *Storage Engine* using [Doctrine DBAL](http://doctrine-dbal.readthedocs.org/en/latest/reference/configuration.html#driver),
-   data cache implementation using [Stash](http://www.stashphp.com/Drivers.html) and binary file system handled by [Flysystem](https://github.com/thephpleague/flysystem#adapters).
-   Improved *Storage Engine* planned, custom implementation for increased data scalability already possible.
- - Powerful (& extensible) Content Query engine, currently powered by SQL, soon Solr/ElasticSearch
- - Very high performance thanks to content & user aware HTTP <sup>"view"</sup> cache (now [using](https://github.com/FriendsOfSymfony/FOSHttpCacheBundle))
- - Introduces concept of "web sites" allowing you to manage several within one installation
- - Allows to rapidly set up *Contextual override* of content display twig templates as well as controller based on Content type, section, and much more.
- - Helpers, services, events and signals allowing you to efficiently create everything from simple web sites to complex applications
-- **PlatformUIBundle**: A modern, extensible "Backend" UI for managing content & administering the site
+#### Hints
+* The project is based on the "clean" variant of the ezplatform installer
 
-### Further information:
-eZ Platform is 100% open source and is released as companion to a commercial *eZ Studio* software which adds advanced
-features for editorial teams and media companies, 100% built on top of *eZ Platform* APIs.
+#### Code
+Starting branch: `master`
 
-- [eZ Publish 5.x Architecture, including "Platform Stack"](https://doc.ez.no/pages/viewpage.action?pageId=11403666)
-- [eZ Studio and eZ Platform RoadMap](http://ez.no/Blog/What-to-Expect-from-eZ-Studio-and-eZ-Platform)
-- [eZ Platform 2015 release plan](http://ez.no/Blog/What-Releases-to-Expect-from-eZ-in-2015)
-- eZ Systems AS *(commercial products and services)*: [ez.no](http://ez.no/)
-- eZ Community: [share.ez.no](http://ez.no/)
+### 2. Create a PHP API
 
-## Install
-For manual installation instructions, see [INSTALL.md](https://github.com/ezsystems/ezplatform/blob/master/INSTALL.md).
-For simplified installation, see our Docker Tools Beta instructions in [doc/docker-compose/README.md](https://github.com/ezsystems/ezplatform/blob/master/doc/docker-compose/README.md).
+* Create an entity for an IPA beer, representing only the title and the review number (more to come)
+* Create a `IpaService`, a Symfony service which returns an IPA entity given a content id
+* Create a controller and a route which outputs a JSON representation of your entity
+* Make sure the services handles content which is not of content type IPA (eg. throw exception)
+
+#### Bonus
+* Create an entity for a brewery.
+* Extend the IPA service with a method to load a brewery 
+* Extend the IPA entity that it knows about the brewery entity
+
+#### Hints
+* There is a `JsonResponse` class in Symfony which automatically converts your entity to JSON and sets the proper headers.
+* Create kind of a ContentType registry for the content type ids, it makes magic numbers like `15` much more readable as `ContentTypes::IPA`
+* Valid content id of a brewery: 56, valid content id of a IPA: 57
+
+#### Code
+* Starting branch: `master`
+* Branch with a possible solution: `php-api`
+* Diff: https://github.com/urbanetter/practical-apis/compare/master...php-api
+
+### 3. Images
+
+* Enrich the IPA entity with a URL for image delivery
+* Read the URL of the medium image variation of the IPA content and write it into the image field
+
+#### Hints
+* Service id of the `ImageVariationService` (actually a `VariationHandler`) is `ezpublish.fieldType.ezimage.variation_service`. You could inject it into the `IpaService`.
+* You get an image variation by `$imageVariationService->getVariation($content->getField('image'), $content->versionInfo, 'medium');`
+
+#### Code
+* Starting branch: `php-api`
+* Branch with a possible solution: `image-delivery`
+* Diff: https://github.com/urbanetter/practical-apis/compare/php-api...image-delivery
 
 
-### eZ Platform Demo
-This repository lets you create a clean, empty installation of eZ Platform. This type of installation is used for developing from scratch. You can also choose a version of eZ Platform including a demo, that is an example website. It is available in the following repository: https://github.com/ezsystems/ezplatform-demo
+### 4. Extend eZ REST API
 
-## Requirements
-Full requirements can be found on the [Requirements](https://doc.ez.no/display/TECHDOC/Requirements) page.
+* Create a IpaVisitor, setting the right mime types and href attributes if they make sense
+* Register it in services.yml with Tag `ezpublish_rest.output.value_object_visitor` for the IPA entity
+* Create a new `RestController` with a `ipaAction` returning the IPA object
+* Check your new REST API with the REST client
+* Encapsulate the IPA object into a `CachedValue` object, give the location id as parameter
 
-*TL;DR: supported PHP versions are 5.5, 5.6 and 7.0 (for dev use), using mod_php or php-fpm, and either MySQL 5.5/5.6 or MariaDB 5.5/10.0.*
+#### Bonus
+* Create a BreweryVisitor
+* Register it the same as the IpaVisitor
 
-## Issue tracker
-Submitting bugs, improvements and stories is possible on https://jira.ez.no/browse/EZP.
-If you discover a security issue, please see how to responsibly report such issues on https://doc.ez.no/Security.
 
-## Running BDD
-For instruction on how to run the functional tests, see [RUNNING_BEHAT.md](https://github.com/ezsystems/ezplatform/blob/master/RUNNING_BEHAT.md).
+#### Hints
+* Documentation: https://doc.ez.no/display/EZP/Extending+the+REST+API
+* The visitor of the content object: https://github.com/ezsystems/ezpublish-kernel/blob/master/eZ/Publish/Core/REST/Server/Output/ValueObjectVisitor/RestContent.php
+* Since we only allow reading requests (GET) you can restrict the route to GET requests
+* Your visitor needs to start with an opening `startObjectElement()`.
+* `$visitor->visitValueObject()` allows to visit chid objects like... a brewery.
 
-## Backwards compatibility
-eZ Platform aiming to be **100% content compatible** with eZ Publish 5.x, 4.x and 3.x *(introduced in 2002)*, meaning
-that content in those versions of the CMS can be upgraded using
-[online documentation](http://doc.ez.no/eZ-Publish/Upgrading) to eZ Platform.
+#### Code
+Starting branch: `image-delivery`
+Branch with possible solution: `rest-api`
+Diff: https://github.com/urbanetter/practical-apis/compare/image-delivery...rest-api
 
-Unlike eZ Publish Platform 5.x, eZ Platform does not ship with eZ Publish Legacy (4.x). For Platform kernel use combined
-with legacy, eZ Publish Platform 5.4 is the most stable choice, offering support and maintenance updates until 2021.
-Alternative is releases of eZ Publish Community, latest as of Oct 2015 is v2014.11 found at
-[ezpublish-community](https://github.com/ezsystems/ezpublish-community).
+### 5. Representation matcher
+* Create actions in the API controller for a html and a google amp representation
+* Update the IPA entity to give back the urls to the two representations
+* Build a matcher, extending from `eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased\MultipleValued`
+* Create a override rule in `ezplatform.yml` for content type `image` and one of the two representations
+* Create the override template for a `<amp-image>`
 
-## COPYRIGHT
-Copyright (C) 1999-2015 eZ Systems AS. All rights reserved.
+#### Hints
+* The Punk IPA (content id 57) has a image in the description
 
-## LICENSE
-http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#### Code
+* Starting branch: `rest-api`
+* Branch with a possible solution: `representations`
+* Diff: https://github.com/urbanetter/practical-apis/compare/rest-api...representations
+
+### 6. RichText Reducer
+* Create a Renderer `ReducerRenderer` which removes ezembeds if they embed a content of contentType `image` (content type id: 5)
+* Register renderer in services.yml with tag `ezpublish.ezrichtext.converter.output.xhtml5` and priority 5
+* Test the representation
+
+#### Bonus
+* Generalize the representation idea into an own service and entity, which controls the reducer and the matcher, so you can write in the matcher something like `$representationService->activeRepresentation->matches($this->values)`
+
+#### Hints
+* Embed render of eZ platform:  https://github.com/ezsystems/ezpublish-kernel/blob/master/eZ/Publish/Core/FieldType/RichText/Converter/Render/Embed.php
+* The `xlink:href` attribute of ezembed can either be `ezcontent://<content id>` or `ezlocation://<location id>`
+* `parse_url()` parses strings like `schema://host` into an array with the keys `schema` and `host`.
