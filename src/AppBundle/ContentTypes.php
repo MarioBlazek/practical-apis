@@ -7,4 +7,5 @@ class ContentTypes
 {
     const IPA = 15;
     const BREWERY = 14;
+    const IMAGE = 5;
 }

@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: urban
- * Date: 19.08.16
- * Time: 21:43
- */
 
 namespace AppBundle\Service;
 
-
+use AppBundle\ContentTypes;
 use DOMDocument;
 use eZ\Publish\Core\FieldType\RichText\Converter;
 use eZ\Publish\Core\FieldType\RichText\Converter\Render;
@@ -40,13 +34,15 @@ class RichTextReducer extends Render implements Converter
     {
         $embeds = $xmlDoc->getElementsByTagName('ezembed');
         foreach ($embeds as $embed) {
+            /** @var \DOMElement $embed */
             $href = $embed->getAttribute('xlink:href');
-            $urlParts = parse_url($href);
-            if ($urlParts['scheme'] == 'ezcontent') {
-                $contentInfo = $this->contentService->loadContentInfo($urlParts['host']);
-                if ($contentInfo->contentTypeId == 5) {
+            list($what, $id) = array_values(parse_url($href));
+            if ($what == 'ezcontent') {
+                $contentInfo = $this->contentService->loadContentInfo($id);
+                // if it's an image, remove it for now
+                if ($contentInfo->contentTypeId == ContentTypes::IMAGE) {
                     $embed->parentNode->removeChild($embed);
-                }// if it's an image, remove it for now
+                }
             }
         }
 
