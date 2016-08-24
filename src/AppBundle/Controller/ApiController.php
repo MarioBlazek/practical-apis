@@ -2,20 +2,21 @@
 
 namespace AppBundle\Controller;
 
-use eZ\Publish\Core\REST\Server\Values\CachedValue;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use eZ\Publish\Core\REST\Server\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class ApiController
  * @package AppBundle\Controller
+ * @Route("/api")
  */
 class ApiController extends Controller
 {
     /**
      * @param int $contentId
      * @Route("/ipa/{contentId}")
-     * @return CachedValue
+     * @return JsonResponse
      */
     public function ipaAction($contentId)
     {
@@ -23,11 +24,7 @@ class ApiController extends Controller
 
         $ipa = $service->loadIpa($contentId);
 
-        $contentService = $this->container->get('ezpublish.api.service.content');
-        $locationId = $contentService->loadContentInfo($contentId)->mainLocationId;
-        $cached = new CachedValue($ipa, ['locationId' => $locationId]);
-
-        return $cached;
+        return new JsonResponse($ipa);
     }
 
     /**

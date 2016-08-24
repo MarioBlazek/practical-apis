@@ -28,7 +28,7 @@ _ezplatformRepositoryFormsRoutes:
     resource: "@EzSystemsRepositoryFormsBundle/Resources/config/routing.yml"
 
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@AppBundle/Controller/RestController.php"
     type:     annotation
     prefix:   %ezpublish_rest.path_prefix%
 
