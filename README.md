@@ -34,11 +34,11 @@ Starting branch: `master`
 * Create an entity for an IPA beer, representing only the title and the review number (more to come)
 * Create a `IpaService`, a Symfony service which returns an IPA entity given a content id
 * Create a controller and a route which outputs a JSON representation of your entity
-* Make sure the controller responses with 404 if the content id is not found or it is not of content type IPA.
+* Make sure the services handles content which is not of content type IPA (eg. throw exception)
 
 #### Bonus
 * Create an entity for a brewery.
-* Let the created service also return brewery entites if the given content is of contentType `brewery`.
+* Extend the IPA service with a method to load a brewery 
 * Extend the IPA entity that it knows about the brewery entity
 
 #### Hints
@@ -57,7 +57,7 @@ Starting branch: `master`
 * Read the URL of the medium image variation of the IPA content and write it into the image field
 
 #### Hints
-* Service id of the `ImageVariationService` (actually a `VariationHandler`) is `ezpublish.fieldType.ezimage.variation_service`.
+* Service id of the `ImageVariationService` (actually a `VariationHandler`) is `ezpublish.fieldType.ezimage.variation_service`. You could inject it into the `IpaService`.
 * You get an image variation by `$imageVariationService->getVariation($content->getField('image'), $content->versionInfo, 'medium');`
 
 #### Code
@@ -69,8 +69,9 @@ Starting branch: `master`
 ### 4. Extend eZ REST API
 
 * Create a IpaVisitor, setting the right mime types and href attributes if they make sense
-* Register it in services.yml with Tag ezpublish_rest.output.value_object_visitor for the IPA entity
-* Create a REST controller returning the IPA object
+* Register it in services.yml with Tag `ezpublish_rest.output.value_object_visitor` for the IPA entity
+* Create a new `RestController` with a `ipaAction` returning the IPA object
+* Check your new REST API with the REST client
 * Encapsulate the IPA object into a `CachedValue` object, give the location id as parameter
 
 #### Bonus
